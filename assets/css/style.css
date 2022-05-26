@@ -8,8 +8,6 @@
 }
 
 :root{
-    /* ===== Colors ===== */
-    --primary-color: #002B7A;
     --panel-color: #Fff;
     --text-color: #000;
     --black-light-color: #707070;
@@ -28,19 +26,6 @@
 
 body{
     min-height: 100vh;
-    background-color: var(--primary-color);
-}
-body.dark{
-    --primary-color: #3A3B3C;
-    --panel-color: #242526;
-    --text-color: #CCC;
-    --black-light-color: #CCC;
-    --border-color: #4D4C4C;
-    --toggle-color: #FFF;
-    --box1-color: #3A3B3C;
-    --box2-color: #3A3B3C;
-    --box3-color: #3A3B3C;
-    --title-icon-color: #CCC;
 }
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {

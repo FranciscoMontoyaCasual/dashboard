@@ -69,7 +69,7 @@
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <i class="uil uil-tachometer-fast-alt" style="background-color: #002B7A"></i>
                     <span class="text" style="color: #607d8b; border-bottom: 4px solid #D59F0F">Dashboard</span>
                 </div>
                 <?php
@@ -94,11 +94,11 @@
 
             <div class="activity">
                 <div class="title">
-                    <i class="uil uil-clock-three"></i>
+                    <i class="uil uil-clock-three" style="background-color: #002B7A;"></i>
                     <span class="text" style="color: #607d8b; border-bottom: 4px solid #D59F0F">Solicitudes</span>
                 </div>
 
-                <table id="request_table" class="display">
+                <table id="request_table" class="display overflow-x-hidden">
                     <thead>
                         <th>Folio</th>
                         <th>Tipo de servicio</th>
@@ -142,7 +142,7 @@
 
             <div class="activity">
                 <div class="title">
-                    <i class="uil uil-clock-three"></i>
+                    <i class="uil uil-clock-three" style="background-color: #002B7A;"></i>
                     <span class="text" style="color: #607d8b; border-bottom: 4px solid #D59F0F">Solicitudes pendientes</span>
                 </div>
 
