@@ -102,7 +102,4 @@ class DB{
         $db->query($query);
     }
 }
-
-$db = DB::connect_db();
-DB::insert_user($db);
 ?>
