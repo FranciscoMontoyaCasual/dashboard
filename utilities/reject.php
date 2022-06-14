@@ -19,7 +19,7 @@ if(isset($_POST['request_id']) && isset($_POST['comment'])){
         'body' => json_encode([
             'status' => 'R',
             'request_id' => $request_id,
-            'send_to' => 'franciscomontoyacasual@gmail.com',
+            'send_to' => 'admrecurso@acatlan.unam.mx',
             'comment' => $comment
         ])
     ]);
