@@ -12,14 +12,14 @@ if(isset($_POST['request_id']) && isset($_POST['comment'])){
 
     $client = new GuzzleHttp\Client();
 
-    $url = "https://script.google.com/macros/s/AKfycbw7Ci9qrAqMS8yBgrPhWnoGNONVjx34-znJ6PF2naiGpH4D4cSkpdxinwzVMpx6MhqS/exec";
+    $url = "https://script.google.com/macros/s/AKfycbywv1f3YnJJ-TqmZVOAL0C9_-jgEGLLwYkfmda37U9kBj1P2hOZ7o8TUCYj1YW-MVIv/exec";
 
     $request = $client->post($url, [
         'headers' => ['Content-Type' => 'application/json'],
         'body' => json_encode([
             'status' => 'R',
             'request_id' => $request_id,
-            'send_to' => 'admrecurso@acatlan.unam.mx',
+            'send_to' => 'franciscomontoyacasual@gmail.com',
             'comment' => $comment
         ])
     ]);

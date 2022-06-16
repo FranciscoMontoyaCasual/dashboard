@@ -67,19 +67,19 @@ class DB{
     }
 
     public static function get_all_requests($db){
-        $result = $db->query("select r.request_id, service_type, area, area_manager, user_name, request_date, phone, email, category, service_subtype, r.description, assigned, s.description, s.comment from request as r left join status as s on r.request_id = s.request_id where s.description != 'Rechazada' or s.description is null"); 
+        $result = $db->query("select r.request_id, service_type, area, area_manager, user_name, request_date, phone, email, category, service_subtype, r.description, assigned, s.description, s.comment from request as r left join status as s on r.request_id = s.request_id where (s.description != 'Rechazada' or s.description is null) and s.status_id in (select max(status_id) from status group by request_id) or status_id is null order by request_id"); 
         
         return $result;
     }
 
     public static function get_requests_by_area($db, $area_id){
-        $result = $db->query("select r.request_id, service_type, area_manager, s.description from request as r join status as s on r.request_id = s.request_id where r.request_id in (select request_id from assigned_request where area_id = $area_id) and final_date is null"); 
+        $result = $db->query("select r.request_id, service_type, area_manager, request_date, s.description from request as r join status as s on r.request_id = s.request_id where r.request_id in (select request_id from assigned_request where area_id = $area_id) and final_date is null"); 
         
         return $result;
     }
 
     public static function get_request_by_id($db, $request_id){
-        $query = "select r.request_id, service_type, area, area_manager, user_name, request_date, phone, email, category, service_subtype, r.description as res_des, assigned, s.description, s.comment from request as r left join status as s on r.request_id = s.request_id where r.request_id = '$request_id'";
+        $query = "select r.request_id, service_type, area, area_manager, user_name, request_date, phone, email, category, service_subtype, r.description as res_des, assigned, s.description as st_des, s.comment from request as r left join status as s on r.request_id = s.request_id where r.request_id = '$request_id'";
 
         $result = $db->query($query);
 
@@ -100,6 +100,41 @@ class DB{
         $query = "insert into status(request_id, description, comment, initial_date, final_date) values('$request_id', 'Rechazada', '$comment', now(), now())";
 
         $db->query($query);
+    }
+
+    public static function get_request($db, $request_id){
+        $temp = [];
+        $query = "select request_id, service_type, area, area_manager, user_name, request_date, phone, email, category, service_subtype, description from request where request_id = '$request_id' limit 1";
+        foreach($db->query($query) as $row){
+            $temp['request_id'] = $row['request_id'];
+            $temp['service_type'] = $row['service_type'];
+            $temp['area'] = $row['area'];
+            $temp['area_manager'] = $row['area_manager'];
+            $temp['user_name'] = $row['user_name'];
+            $temp['request_date'] = $row['request_date'];
+            $temp['phone'] = $row['phone'];
+            $temp['email'] = $row['email'];
+            $temp['category'] = $row['category'];
+            $temp['service_subtype'] = $row['service_subtype'];
+            $temp['description'] = $row['description'];
+        }
+
+        return $temp;
+    }
+
+    public static function change_request_status($db, $request_id, $status, $comment){
+        $up_query1 = "update status set final_date = now() where request_id = '$request_id' and final_date is null";
+        $in_query1 = "insert into status(request_id, description, comment, initial_date, final_date) values('$request_id', '$status', '$comment', now(), null)";
+
+        $in_query2 = "insert into status(request_id, description, comment, initial_date, final_date) values('$request_id', '$status', '$comment', now(), now())";
+
+        if($status == 'Trabajando'){
+            $db->query($up_query1);
+            $db->query($in_query1);
+        }else if($status == 'Detenida' || $status == 'Completada'){
+            $db->query($up_query1);
+            $db->query($in_query2);
+        }
     }
 }
 ?>

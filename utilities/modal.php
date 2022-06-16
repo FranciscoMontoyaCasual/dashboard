@@ -14,6 +14,7 @@ if(isset($_POST['request_id'])){
         $temp['email'] = $row['email'];
         $temp['service_subtype'] = $row['service_subtype'];
         $temp['res_des'] = $row['res_des'];
+        $temp['st_des'] = $row['st_des'];
     }
 
     header('Content-Type: application/json');
