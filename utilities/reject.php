@@ -12,7 +12,7 @@ if(isset($_POST['request_id']) && isset($_POST['comment'])){
 
     $client = new GuzzleHttp\Client();
 
-    $url = "https://script.google.com/macros/s/AKfycbywv1f3YnJJ-TqmZVOAL0C9_-jgEGLLwYkfmda37U9kBj1P2hOZ7o8TUCYj1YW-MVIv/exec";
+    $url = "https://script.google.com/macros/s/AKfycbxPxAHMoeGCkr2tU9ZUtjPvMasDbFG4WYYskgmcpi896hwv7MFTQadS3L_LgRWYbTKZ/exec";
 
     $request = $client->post($url, [
         'headers' => ['Content-Type' => 'application/json'],

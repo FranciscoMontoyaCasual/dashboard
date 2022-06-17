@@ -10,23 +10,25 @@ if(isset($_POST['request_id']) && isset($_POST['area_id']) && isset($_POST['comm
 
     $client = new GuzzleHttp\Client();
 
-    $url = "https://script.google.com/macros/s/AKfycbwQS_ZCFAOeuGT-cMGItfNQslNVD87WhDcoIIrTE-n4H9Y3o3kfjXpIpQ8CQpS6bUc/exec";
+    $url = "https://script.google.com/macros/s/AKfycbxPxAHMoeGCkr2tU9ZUtjPvMasDbFG4WYYskgmcpi896hwv7MFTQadS3L_LgRWYbTKZ/exec";
 
     $request = $client->post($url, [
         'headers' => ['Content-Type' => 'application/json'],
         'body' => json_encode([
             'status' => 'A',
-            'request_id' => $_POST['request_id'],
-            'service_type' => $result['service_type'],
-            'area' => $result['area'],
-            'area_manager' => $result['area_manager'],
-            'user_name' => $result['user_name'],
+            'request_id' => 'M004',
+            'service_type' => "Seguridad",
+            'area' => 'Departamento de Proyección Empresarial e Intercambio y Colaboración  Institucional',
+            'area_manager' => 'Ricardo Cortes Baez',
+            'user_name' => 'Javier Gutiérrez',
             'request_date' => '2022-04-05',
-            'phone' => $result['phone'],
+            'phone' => '2722806259',
             'email' => 'franciscomontoyacasual@gmail.com',
-            'category' => $result['category'],
-            'service_subtype' => $result['service_subtype'],
-            'description' => $result['description']
+            'category' => 'Seguridad privada',
+            'service_subtype' => 'Vigilancia para eventos',
+            'description' => 'Pintura para la UAR el viernes 4 de marzo de 6 a 8 pm',
+            'send_to' => "franciscomontoyacasual@gmail.com",
+	        'comment' => "This is a simple comment"
         ])
     ]);
 
