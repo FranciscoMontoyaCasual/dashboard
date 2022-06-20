@@ -6,11 +6,11 @@ use GuzzleHttp\Client;
 if(isset($_POST['request_id']) && isset($_POST['area_id']) && isset($_POST['comment'])){
     $db = DB::connect_db();
     DB::assign_request($db, $_POST['request_id'], $_POST['area_id'], $_POST['comment']);
-    $result = DB::get_request($db, $_POST['request_id']);
+    //$result = DB::get_request($db, $_POST['request_id']);
 
     $client = new GuzzleHttp\Client();
 
-    $url = "https://script.google.com/macros/s/AKfycbxPxAHMoeGCkr2tU9ZUtjPvMasDbFG4WYYskgmcpi896hwv7MFTQadS3L_LgRWYbTKZ/exec";
+    $url = "https://script.google.com/macros/s/AKfycbx_ltIMZPTdd1-2Va1UPZLVVo3K_rW4KlMmwpGQ0Z9o-5imvszxuQ7IEixWxRjaEbVl/exec";
 
     $request = $client->post($url, [
         'headers' => ['Content-Type' => 'application/json'],
