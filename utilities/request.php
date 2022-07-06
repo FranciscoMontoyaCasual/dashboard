@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 if(isset($_POST['request_id']) && isset($_POST['area_id']) && isset($_POST['comment'])){
     $db = DB::connect_db();
     DB::assign_request($db, $_POST['request_id'], $_POST['area_id'], $_POST['comment']);
-    //$result = DB::get_request($db, $_POST['request_id']);
+    $result = DB::get_request($db, $_POST['request_id']);
 
     $client = new GuzzleHttp\Client();
 
